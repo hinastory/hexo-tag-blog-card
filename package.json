@@ -1,0 +1,32 @@
+{
+  "name": "hexo-tag-blog-card",
+  "version": "0.0.1",
+  "description": "Embed a blog card on your Hexo article.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hinastory/hexo-tag-blog-card.git"
+  },
+  "keywords": [
+    "hexo",
+    "helper",
+    "plugin",
+    "tag",
+    "link",
+    "preview",
+    "image",
+    "ogp",
+    "blog",
+    "card"
+  ],
+  "author": "hinastory",
+  "license": "MIT",
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "hexo-util": "^0.6.3",
+    "open-graph-scraper": "^3.1.5"
+  }
+}
