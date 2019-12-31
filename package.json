@@ -24,9 +24,14 @@
   ],
   "author": "hinastory",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hinastory/hexo-tag-blog-card/issues"
+  },
+  "homepage": "https://github.com/hinastory/hexo-tag-blog-card",
   "dependencies": {
     "escape-html": "^1.0.3",
     "hexo-util": "^0.6.3",
-    "open-graph-scraper": "^3.1.5"
+    "open-graph-scraper": "^3.1.5",
+    "stylus": "^0.54.7"
   }
 }

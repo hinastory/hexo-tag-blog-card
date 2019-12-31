@@ -1,6 +1,6 @@
 .blog-card
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 4px;
     margin-right: 16px;
     .hbc-link-wrap
@@ -41,17 +41,19 @@
                         text-decoration: none;
                         display: inline !important;
                 .hbc-contents
-                    height: 108px;
+                    height: 114px;
                     margin: 6px 0 0 0;
                     word-break: break-all;
                     white-space: normal;
                     overflow: hidden;
+                    display: flex;
                     .hbc-thumbnail
                         max-width: 100px;
                         max-height: 108px;
                         padding: 0;
                         margin: 0 6px 4px 4px;
-                        float: left;
+                    .hbc-text
+                        flex: 1;
                     .hbc-title
                         color: #111111;
                         font-size: 16px;
@@ -62,9 +64,7 @@
                     .hbc-url
                         color: #4466ff;
                         font-size: 10px;
-                        line-height: 10px;
                         font-weight: normal;
-                        text-decoration: underline;
                         overflow: hidden;
                         display: block;
                         white-space: nowrap;
