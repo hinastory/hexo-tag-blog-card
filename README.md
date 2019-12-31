@@ -1,18 +1,22 @@
 # hexo-tag-blog-card
+
+[![NPM](https://nodei.co/npm/hexo-tag-blog-card.png)](https://nodei.co/npm/hexo-tag-blog-card/)
+![NPM](https://img.shields.io/npm/l/hexo-tag-blog-card?style=plastic)
+[![hexo](https://img.shields.io/badge/Hexo-%3E%3D3.0-blue.svg?style=flat-square)](https://hexo.io)
+
 Embed a blog card on your [Hexo](https://hexo.io/) article.
 
-[![hexo](https://img.shields.io/badge/Hexo-%3E%3D3.0-blue.svg?style=flat-square)](https://hexo.io)
+![](blog-card-image.png)
 
 ## Installation
 
 `npm install hexo-tag-blog-card`
-
 ## Usage
 `{% blogCard <url> [target:<target>] [rel:<rel>] [hatena:<true/false>] %}`
 
 Example:
 ```
-{% blogCard https://www.amazon.com/ _blank nofollow %}
+{% blogCard https://www.amazon.com/ target:_blank rel:nofollow %}
 ```
 
 ### Explantion of attributes
