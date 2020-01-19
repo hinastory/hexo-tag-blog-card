@@ -8,6 +8,13 @@ Embed a blog card on your [Hexo](https://hexo.io/) article.
 
 ![](blog-card-image.png)
 
+## Features
+
+- OGP(Open Graph Protocol) based blog card
+- Supports favicon and site name.
+- Supports Hatena blog card style.
+- Supports style configuration.
+
 ## Installation
 
 `npm install hexo-tag-blog-card`
