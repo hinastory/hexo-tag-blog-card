@@ -54,6 +54,13 @@ You can provide a favicon API with variables(`$URL`, `$DOMAIN`).
 You can use Hatena Blog Card if you set `true`.
 (Default: `false`)
 
+### timeout
+You can provide number of timeout(milliseconds).
+(Default: `4000`)
+
+You can use Hatena Blog Card if you set `true`.
+(Default: `false`)
+
 ### Example
 
 _config.yml:

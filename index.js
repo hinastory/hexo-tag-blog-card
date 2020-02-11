@@ -20,6 +20,8 @@ const faviconAPI = (hexo.config.blogCard && hexo.config.blogCard.faviconAPI)
                     ? hexo.config.blogCard.faviconAPI : 'http://favicon.hatena.ne.jp/?url=$URL';
 const useHatena = (hexo.config.blogCard && hexo.config.blogCard.useHatena)
                     ? hexo.config.blogCard.useHatena : false;
+const timeout = (hexo.config.blogCard && hexo.config.blogCard.timeout)
+                    ? hexo.config.blogCard.timeout : 4000;
 
 hexo.extend.tag.register('blogCard', function(args) {
   return getTag(parseOption(args));
@@ -27,7 +29,7 @@ hexo.extend.tag.register('blogCard', function(args) {
 
 
 function parseOption(args) {
-  let opts = { url: args[0] };
+  let opts = { url: args[0], timeout };
 
   if (args.length > 1) {
     args.slice(1).forEach((e) => {
