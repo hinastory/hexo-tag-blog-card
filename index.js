@@ -4,7 +4,7 @@
 * Copyright (c) 2019, hinastory
 * Licensed under the MIT license.
 * Syntax:
-* {% blogCard <url> [rel:<rel> [target:<target>] [useHatena:<true/false>] %}
+* {% blogCard <url> [rel:<rel>] [target:<target>] [useHatena:<true/false>] %}
 **/
 
 'use strict';
@@ -21,7 +21,7 @@ const faviconAPI = (hexo.config.blogCard && hexo.config.blogCard.faviconAPI)
 const useHatena = (hexo.config.blogCard && hexo.config.blogCard.useHatena)
                     ? hexo.config.blogCard.useHatena : false;
 const timeout = (hexo.config.blogCard && hexo.config.blogCard.timeout)
-                    ? hexo.config.blogCard.timeout : 4000;
+                    ? hexo.config.blogCard.timeout : 6000;
 
 hexo.extend.tag.register('blogCard', function(args) {
   return getTag(parseOption(args));
@@ -62,24 +62,28 @@ function getTagByHatena(options) {
   })
 }
 
+function getCardTag(ogp, options){
+  const info = getInfo(options, ogp);
+  const contents = getContents(options, ogp);
+
+  const card = util.htmlTag('div', { class: 'hbc-card' }, info + contents);
+  const link = util.htmlTag('a', { class: 'hbc-link', href: options.url, target: options.target, rel: options.rel }, card);
+  const linkWrap = util.htmlTag('div', { class: 'hbc-link-wrap' }, link);
+  const tag = util.htmlTag('div', { class: className }, linkWrap);
+  return tag;
+}
+
 function getTagByOpenGraph(options){
   return ogs(options)
-    .then(function (result) {
-      const ogp = result.data;
-
-      const info = getInfo(options, ogp);
-      const contents = getContents(options, ogp);
-
-      const card = util.htmlTag('div', { class: 'hbc-card' }, info + contents);
-      const link = util.htmlTag('a', { class: 'hbc-link', href: options.url, target: options.target, rel: options.rel }, card);
-      const linkWrap = util.htmlTag('div', { class: 'hbc-link-wrap' }, link);
-      const tag = util.htmlTag('div', { class: className }, linkWrap);
-      return tag;
-    })
-    .catch(function (error) {
-      console.log('error:', error);
-      return '';
-  });
+     .then(function(result){
+        return getCardTag(result.data, options);
+     })
+    .catch(function (err) {
+        const {error, requestUrl, errorDetails} = err;
+//        console.log({error, requestUrl, errorDetails});
+        options.faviconAPI = "http://www.google.com/s2/favicons?domain=$DOMAIN"
+        return getCardTag({ogTitle: options.url}, options);
+    });
 }
 
 function getInfo(options, ogp) {
@@ -94,7 +98,11 @@ function getInfo(options, ogp) {
 
   const siteName = util.htmlTag('div', { class: 'hbc-site-name' }, escapeHTML(name));
 
-  let api = faviconAPI.replace('$DOMAIN', encodeURIComponent(urlParsed.hostname));
+  let api = faviconAPI;
+  if (options.hasOwnProperty('faviconAPI')) {
+    api = options.faviconAPI;
+  }
+  api = api.replace('$DOMAIN', encodeURIComponent(urlParsed.hostname));
   api = api.replace('$URL', encodeURIComponent(options.url));
   const favicon = util.htmlTag('img', { class: 'hbc-favicon', src: api } , '');
   return util.htmlTag('div', { class: 'hbc-info' }, favicon + siteName);
